@@ -3,6 +3,18 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  --color-infrastructure: #ff6384;
+  --color-supplies: #36a2eb;
+  --color-salaries: #ffcd56;
+  --color-it: #4bc0c0;
+  --color-teacher-training: #9966ff;
+  --color-transportation: #ff9f40;
+  --color-student-welfare: #8fffff;
+  --color-sports: #ff6b6b;
+  --color-digital-learning: #6b8e23;
+  --color-special-education: #ffa3d7;
+  --color-default: #808080; /* Default color if category is not found */
 }
 
 .logo {

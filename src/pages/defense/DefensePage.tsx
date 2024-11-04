@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
-
 import { Progress } from "../../components/ui/progress";
 import {
   useExpenditure,
@@ -16,21 +15,20 @@ import {
   useExpenditureRequestSummary,
 } from "../../hooks/useExpenditureData";
 
-const EducationPage = () => {
-  const { headers, rows } = useExpenditure("education");
+const DefensePage = () => {
+  const { headers, rows } = useExpenditure("defense");
   const { headers: headersSummary, rows: rowsSummary } =
-    useExpenditureRequestSummary("education");
+    useExpenditureRequestSummary("defense");
   const { chartData, chartConfig, totalAmount } =
     useExpenditureDonutChartDepartment("education");
-
   return (
     <div className="w-full h-full">
-      <h2 className="text-lg font-semibold">Education</h2>
+      <h2 className="text-lg font-semibold">Defense</h2>
       <div className="grid lg:grid-cols-[400px_400px] gap-4 my-4 ">
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>This year's budget</CardDescription>
-            <CardTitle className="text-4xl">RF1,108.5B</CardTitle>
+            <CardTitle className="text-4xl">RF910.02B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">
@@ -44,7 +42,7 @@ const EducationPage = () => {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Remaining</CardDescription>
-            <CardTitle className="text-4xl">RF805.5B</CardTitle>
+            <CardTitle className="text-4xl">RF800.5B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">
@@ -72,9 +70,8 @@ const EducationPage = () => {
         <ExpenditureRequestSummary
           headers={headersSummary}
           rows={rowsSummary}
-          navigateTo="/education/expenditure-requests"
+          navigateTo="/defense/expenditure-requests"
         />
-
         <Card className="col-span-2">
           <CardHeader>
             <CardTitle>Recent Expenditures</CardTitle>
@@ -88,4 +85,4 @@ const EducationPage = () => {
   );
 };
 
-export default EducationPage;
+export default DefensePage;

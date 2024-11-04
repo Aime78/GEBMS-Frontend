@@ -5,15 +5,19 @@ import {
   Landmark,
   LogOut,
   Snowflake,
-  Wallet,
 } from "lucide-react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import { ScrollArea } from "../../components/ui/scroll-area";
 
 const AppLayout = () => {
+  const navigate = useNavigate();
+  async function logout() {
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
   return (
     <div className="grid min-h-screen md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <div className="border-r ">
+      <div className="border-r">
         <div className="flex h-14 items-center px-4 lg:h-[60px] lg:px-6 font-bold">
           <span>GEBMS</span>
         </div>
@@ -26,13 +30,7 @@ const AppLayout = () => {
               <Home className="w-4 h-4" />
               Dashboard
             </Link>
-            <Link
-              to={"/expenditure"}
-              className="hover:bg-muted px-3 py-2 rounded flex items-center gap-2"
-            >
-              <Wallet className="w-4 h-4" />
-              Expenditure Management
-            </Link>
+
             <Link
               to={"/education"}
               className="hover:bg-muted px-3 py-2 rounded flex items-center gap-2"
@@ -62,18 +60,20 @@ const AppLayout = () => {
               Infrastructure
             </Link>
           </nav>
-          <Link
-            to={"/login"}
-            className="mx-4 py-2 lg:mx-3 lg:px-3 flex items-center gap-2 hover:bg-muted rounded"
+          <div
+            onClick={logout}
+            className="mx-4 py-2 lg:mx-3 lg:px-3 flex items-center gap-2 hover:bg-muted rounded cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
             <span>Logout</span>
-          </Link>
+          </div>
         </div>
       </div>
       <ScrollArea className="mx-auto">
-        <div className=" h-14 lg:h-[60px] mx-8 flex items-center">Header</div>
-        <div className="h-[calc(100vh-70px)] px-8 py-2 mx-auto border-2 border-red-600"><Outlet/></div>
+        {/* <div className=" h-14 lg:h-[60px] mx-8 flex items-center">Header</div> */}
+        <div className="h-[calc(100vh-70px)] px-8 py-2">
+          <Outlet />
+        </div>
       </ScrollArea>
     </div>
   );

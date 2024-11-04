@@ -1,29 +1,87 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Outlet,
+  redirect,
+  RouterProvider,
+} from "react-router-dom";
 import AppLayout from "../layout/AppLayout/AppLayout";
 import { EducationPage } from "../pages";
+import EdExpRequests from "../pages/education/EdExpRequests/EdExpRequests";
+import HealthPage from "../pages/health/HealthPage";
+import HealthExpRequest from "../pages/health/HealthExpRequest/HealthExpRequest";
+import DefensePage from "../pages/defense/DefensePage";
+import DefenseExpRequest from "../pages/defense/DefenseExpRequest/DefenseExpRequest";
+import InfrastructurePage from "../pages/infrastructure/InfrastructurePage";
+import InfrastructureExpRequest from "../pages/infrastructure/InfrastructureExpRequest/InfrastructureExpRequest";
+import LoginPage from "../pages/login/LoginPage";
+import DashboardPage from "../pages/dashboard/DashboardPage";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout/>,
+    element: <AppLayout />,
+
     children: [
       {
         path: "/",
-        element: <h1>Home</h1>,
-      },
-      {
-        path: "/expenditure",
-        element: <h1>Expenditure</h1>,
-      },
-      {
-        path: "/education",
-        element: <EducationPage/>,
+  
+        element: <PrivateRoutes />,
+        children: [
+          {
+            path: '/',
+            loader: () => {
+                throw redirect('/dashboard');
+            },
+            element: <Outlet />,
+        },
+          {
+            path: "/dashboard",
+            element: <DashboardPage />,
+          },
+          {
+            path: "/expenditure",
+            element: <h1>Expenditure</h1>,
+          },
+          {
+            path: "/education",
+            element: <EducationPage />,
+          },
+          {
+            path: "/education/expenditure-requests",
+            element: <EdExpRequests />,
+          },
+          {
+            path: "/health",
+            element: <HealthPage />,
+          },
+          {
+            path: "/health/expenditure-requests",
+            element: <HealthExpRequest />,
+          },
+          {
+            path: "/defense",
+            element: <DefensePage />,
+          },
+          {
+            path: "/defense/expenditure-requests",
+            element: <DefenseExpRequest />,
+          },
+          {
+            path: "/infrastructure",
+            element: <InfrastructurePage />,
+          },
+          {
+            path: "/infrastructure/expenditure-requests",
+            element: <InfrastructureExpRequest />,
+          },
+        ],
       },
     ],
   },
   {
-    path: "/about",
-    element: <h1>About</h1>,
+    path: "/login",
+    element: <LoginPage />,
   },
   {
     path: "*",

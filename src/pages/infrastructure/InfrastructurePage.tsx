@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
-
 import { Progress } from "../../components/ui/progress";
 import {
   useExpenditure,
@@ -16,21 +15,20 @@ import {
   useExpenditureRequestSummary,
 } from "../../hooks/useExpenditureData";
 
-const EducationPage = () => {
-  const { headers, rows } = useExpenditure("education");
+const InfrastructurePage = () => {
+  const { headers, rows } = useExpenditure("infrastructure");
   const { headers: headersSummary, rows: rowsSummary } =
-    useExpenditureRequestSummary("education");
+    useExpenditureRequestSummary("infrastructure");
   const { chartData, chartConfig, totalAmount } =
     useExpenditureDonutChartDepartment("education");
-
   return (
     <div className="w-full h-full">
-      <h2 className="text-lg font-semibold">Education</h2>
+      <h2 className="text-lg font-semibold">Infrastructure</h2>
       <div className="grid lg:grid-cols-[400px_400px] gap-4 my-4 ">
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>This year's budget</CardDescription>
-            <CardTitle className="text-4xl">RF1,108.5B</CardTitle>
+            <CardTitle className="text-4xl">RF1,365.5B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">
@@ -44,7 +42,7 @@ const EducationPage = () => {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Remaining</CardDescription>
-            <CardTitle className="text-4xl">RF805.5B</CardTitle>
+            <CardTitle className="text-4xl">RF960.5B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">
@@ -72,7 +70,7 @@ const EducationPage = () => {
         <ExpenditureRequestSummary
           headers={headersSummary}
           rows={rowsSummary}
-          navigateTo="/education/expenditure-requests"
+          navigateTo="/infrastructure/expenditure-requests"
         />
 
         <Card className="col-span-2">
@@ -80,7 +78,7 @@ const EducationPage = () => {
             <CardTitle>Recent Expenditures</CardTitle>
           </CardHeader>
           <CardContent>
-            <ExpenditureTable headers={headers} rows={rows} />
+            <ExpenditureTable headers={headers} rows={rows} width="w-full" />
           </CardContent>
         </Card>
       </div>
@@ -88,4 +86,4 @@ const EducationPage = () => {
   );
 };
 
-export default EducationPage;
+export default InfrastructurePage;

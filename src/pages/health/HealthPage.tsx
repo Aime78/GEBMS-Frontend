@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card";
-
 import { Progress } from "../../components/ui/progress";
 import {
   useExpenditure,
@@ -16,21 +15,21 @@ import {
   useExpenditureRequestSummary,
 } from "../../hooks/useExpenditureData";
 
-const EducationPage = () => {
-  const { headers, rows } = useExpenditure("education");
+const HealthPage = () => {
+  const { headers, rows } = useExpenditure("health");
   const { headers: headersSummary, rows: rowsSummary } =
-    useExpenditureRequestSummary("education");
+    useExpenditureRequestSummary("health");
   const { chartData, chartConfig, totalAmount } =
-    useExpenditureDonutChartDepartment("education");
+    useExpenditureDonutChartDepartment("health");
 
   return (
     <div className="w-full h-full">
-      <h2 className="text-lg font-semibold">Education</h2>
+      <h2 className="text-lg font-semibold">Health</h2>
       <div className="grid lg:grid-cols-[400px_400px] gap-4 my-4 ">
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>This year's budget</CardDescription>
-            <CardTitle className="text-4xl">RF1,108.5B</CardTitle>
+            <CardTitle className="text-4xl">RF1,138.5B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">
@@ -44,7 +43,7 @@ const EducationPage = () => {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Remaining</CardDescription>
-            <CardTitle className="text-4xl">RF805.5B</CardTitle>
+            <CardTitle className="text-4xl">RF750.5B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">
@@ -72,7 +71,7 @@ const EducationPage = () => {
         <ExpenditureRequestSummary
           headers={headersSummary}
           rows={rowsSummary}
-          navigateTo="/education/expenditure-requests"
+          navigateTo="/health/expenditure-requests"
         />
 
         <Card className="col-span-2">
@@ -88,4 +87,4 @@ const EducationPage = () => {
   );
 };
 
-export default EducationPage;
+export default HealthPage;
