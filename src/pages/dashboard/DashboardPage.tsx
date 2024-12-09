@@ -22,6 +22,8 @@ import {
 } from "../../components/ui/chart";
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
 import DonutChart from "../../components/DonutChart/DonutChart";
+import { useExpenditureSummary } from "../../hooks/useExpenditureSummary";
+import { useEffect, useRef } from "react";
 // Donut chart
 export const description = "A donut chart with text";
 
@@ -34,7 +36,15 @@ const DashboardPage = () => {
   const { chartDataExpReq, chartConfigExpReq, totalAmountExpReq } =
     useExpenditureRequestDonutChart();
   const { chartDataBar, chartDataBarConfig } = useExpenditureBarChart();
-  console.log(chartDataBar, chartDataBarConfig);
+  const remainingBudget = useExpenditureSummary(5690100000000);
+  const hasReloaded = useRef(false);
+  
+  useEffect(() => {
+    if (!hasReloaded.current) {
+      window.location.reload();
+      hasReloaded.current = true;
+    }
+  }, []);
 
   return (
     <div className="w-full h-full">
@@ -58,7 +68,7 @@ const DashboardPage = () => {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Remaining</CardDescription>
-            <CardTitle className="text-4xl">RF3,330.51B</CardTitle>
+            <CardTitle className="text-4xl">RF{remainingBudget}B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">

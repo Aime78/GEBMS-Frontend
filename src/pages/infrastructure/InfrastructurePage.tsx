@@ -14,6 +14,7 @@ import {
   useExpenditureDonutChartDepartment,
   useExpenditureRequestSummary,
 } from "../../hooks/useExpenditureData";
+import { useExpenditureSummaryByDepartment } from "../../hooks/useExpenditureSummary";
 
 const InfrastructurePage = () => {
   const { headers, rows } = useExpenditure("infrastructure");
@@ -21,6 +22,10 @@ const InfrastructurePage = () => {
     useExpenditureRequestSummary("infrastructure");
   const { chartData, chartConfig, totalAmount } =
     useExpenditureDonutChartDepartment("education");
+    const remainingBudget = useExpenditureSummaryByDepartment(
+      1365500000000,
+      "infrastructure"
+    );
   return (
     <div className="w-full h-full">
       <h2 className="text-lg font-semibold">Infrastructure</h2>
@@ -42,7 +47,7 @@ const InfrastructurePage = () => {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Remaining</CardDescription>
-            <CardTitle className="text-4xl">RF960.5B</CardTitle>
+            <CardTitle className="text-4xl">RF{remainingBudget}B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">

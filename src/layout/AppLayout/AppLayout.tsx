@@ -5,60 +5,58 @@ import {
   Landmark,
   LogOut,
   Snowflake,
+  Users,
 } from "lucide-react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { ScrollArea } from "../../components/ui/scroll-area";
-
+import { Toaster } from "../../components/ui/toaster";
 const AppLayout = () => {
   const navigate = useNavigate();
   async function logout() {
     localStorage.removeItem("token");
     navigate("/login");
   }
+
+  const getLinkClassName = ({ isActive }: { isActive: boolean }) =>
+    `px-3 py-2 rounded flex items-center gap-2 ${
+      isActive
+        ? "text-primary font-semibold hover:bg-muted hover:text-primary"
+        : "hover:bg-muted"
+    }`;
+
   return (
     <div className="grid min-h-screen md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="border-r">
         <div className="flex h-14 items-center px-4 lg:h-[60px] lg:px-6 font-bold">
           <span>GEBMS</span>
         </div>
-        <div className="flex flex-col h-[calc(100vh-70px)] text-sm font-medium">
+        <div className="flex flex-col h-[calc(100vh-70px)] lg:span-1 text-sm font-medium">
           <nav className="flex flex-1 flex-col gap-2 px-4 py-4 lg:px-3">
-            <Link
-              to={"/"}
-              className="hover:bg-muted px-3 py-2 rounded flex items-center gap-2"
-            >
+            <NavLink to={"/dashboard"} className={getLinkClassName}>
               <Home className="w-4 h-4" />
               Dashboard
-            </Link>
+            </NavLink>
+            <NavLink to={"/users"} className={getLinkClassName}>
+              <Users className="w-4 h-4" />
+              Users
+            </NavLink>
 
-            <Link
-              to={"/education"}
-              className="hover:bg-muted px-3 py-2 rounded flex items-center gap-2"
-            >
+            <NavLink to={"/education"} className={getLinkClassName}>
               <Book className="w-4 h-4" />
               Education
-            </Link>
-            <Link
-              to={"/health"}
-              className="hover:bg-muted px-3 py-2 rounded flex items-center gap-2"
-            >
+            </NavLink>
+            <NavLink to={"/health"} className={getLinkClassName}>
               <HeartPulse className="w-4 h-4" />
               Health
-            </Link>
-            <Link
-              to={"/defense"}
-              className="hover:bg-muted px-3 py-2 rounded flex items-center gap-2"
-            >
+            </NavLink>
+            <NavLink to={"/defense"} className={getLinkClassName}>
               <Snowflake className="w-4 h-4" />
               Defense
-            </Link>
-            <Link
-              to={"/infrastructure"}
-              className="hover:bg-muted px-3 py-2 rounded flex items-center gap-2"
-            >
+            </NavLink>
+            <NavLink to={"/infrastructure"} className={getLinkClassName}>
               <Landmark className="w-4 h-4" />
               Infrastructure
-            </Link>
+            </NavLink>
           </nav>
           <div
             onClick={logout}
@@ -70,9 +68,9 @@ const AppLayout = () => {
         </div>
       </div>
       <ScrollArea className="mx-auto">
-        {/* <div className=" h-14 lg:h-[60px] mx-8 flex items-center">Header</div> */}
-        <div className="h-[calc(100vh-70px)] px-8 py-2">
+        <div className="h-[calc(100vh-70px)] px-8 py-4">
           <Outlet />
+          <Toaster />
         </div>
       </ScrollArea>
     </div>

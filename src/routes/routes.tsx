@@ -16,6 +16,7 @@ import InfrastructureExpRequest from "../pages/infrastructure/InfrastructureExpR
 import LoginPage from "../pages/login/LoginPage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import PrivateRoutes from "./PrivateRoutes";
+import UsersPage from "../pages/users/UsersPage";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
             path: "/infrastructure/expenditure-requests",
             element: <InfrastructureExpRequest />,
           },
+          {
+            path: "/users",
+            element: <UsersPage/>
+          }
         ],
       },
     ],

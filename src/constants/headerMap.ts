@@ -27,3 +27,12 @@ export const headerMap: HeaderMapExpenditure = {
     projectName: "Project Name",
   };
   
+  export const headerMapUser: HeaderMapExpenditureRequest = {
+    firstName: "First Name",
+    lastName: "Last Name",
+    email: "Email",
+    role: "Role",
+    department: "Department",
+    // password: "XXXXXXXX",
+
+  }

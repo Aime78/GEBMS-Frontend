@@ -55,6 +55,7 @@ const LoginPage = () => {
       const { data } = response;
       localStorage.setItem("token", data.token);
       setIsSubmitting(false);
+      
       navigate("/dashboard");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

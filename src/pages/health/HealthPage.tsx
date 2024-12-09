@@ -14,6 +14,7 @@ import {
   useExpenditureDonutChartDepartment,
   useExpenditureRequestSummary,
 } from "../../hooks/useExpenditureData";
+import { useExpenditureSummaryByDepartment } from "../../hooks/useExpenditureSummary";
 
 const HealthPage = () => {
   const { headers, rows } = useExpenditure("health");
@@ -21,7 +22,11 @@ const HealthPage = () => {
     useExpenditureRequestSummary("health");
   const { chartData, chartConfig, totalAmount } =
     useExpenditureDonutChartDepartment("health");
-
+    const remainingBudget = useExpenditureSummaryByDepartment(
+      1138500000000,
+      "health"
+    );
+    
   return (
     <div className="w-full h-full">
       <h2 className="text-lg font-semibold">Health</h2>
@@ -43,7 +48,7 @@ const HealthPage = () => {
         <Card>
           <CardHeader className="pb-2">
             <CardDescription>Remaining</CardDescription>
-            <CardTitle className="text-4xl">RF750.5B</CardTitle>
+            <CardTitle className="text-4xl">RF{remainingBudget}B</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="text-xs text-muted-foreground">
