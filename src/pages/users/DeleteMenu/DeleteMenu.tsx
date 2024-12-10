@@ -11,7 +11,7 @@ import {
 } from "../../../components/ui/alert-dialog";
 import { useToast } from "../../../hooks/use-toast";
 import { Loader2, XCircle } from "lucide-react";
-import Api, { AuthOptions } from "../../../routes/AppEndpoints";
+import Api, { getAuthOptions} from "../../../routes/AppEndpoints";
 import axios from "axios";
 
 interface DeleteMenuProps {
@@ -30,7 +30,7 @@ const DeleteMenu = ({ open, setOpen, id }: DeleteMenuProps) => {
     try {
       const response = await axios.delete(
         `${Api.BASE_URL}/${Api.USERS}/${id}`,
-        AuthOptions
+        getAuthOptions()
       );
       console.log(response);
       toast({

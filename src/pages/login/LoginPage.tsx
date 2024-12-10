@@ -18,21 +18,19 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
-import {
-  EyeIcon,
-  EyeOff,
-  Loader2,
-} from "lucide-react";
+import { EyeIcon, EyeOff, Loader2 } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import Api from "../../routes/AppEndpoints";
 import { useNavigate } from "react-router-dom";
+import { useAuthToken } from "../../hooks/useAuthToken";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showError, setShowError] = useState(false);
+  const { setToken } = useAuthToken();
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
@@ -54,8 +52,9 @@ const LoginPage = () => {
       );
       const { data } = response;
       localStorage.setItem("token", data.token);
+      setToken(data.token);
       setIsSubmitting(false);
-      
+
       navigate("/dashboard");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

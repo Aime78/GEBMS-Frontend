@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ChartConfig, ChartDataItemDashboard, ExpSummary } from "../types/chart";
 import axios from "axios";
-import Api, { AuthOptions } from "../routes/AppEndpoints";
+import Api, {  getAuthOptions } from "../routes/AppEndpoints";
 import { Expenditure, ExpenditureSummary } from "../types/expenditure";
 import { formatToBillions } from "../lib/formatBillion";
 import { ExpenditureRequest } from "../types/expenditureRequests";
@@ -23,7 +23,7 @@ export const useExpenditureDonutChart = (year: number) => {
       try {
         const response = await axios.get(
           `${Api.BASE_URL}/${Api.EXPENDITURE}?year=${year}`,
-         AuthOptions
+          getAuthOptions()
         );
         const data: Expenditure[] = response.data;
 
@@ -99,7 +99,7 @@ export const useExpenditureRequestDonutChart = () => {
       try {
         const response = await axios.get(
           `${Api.BASE_URL}/${Api.EXPENDITURE_REQUEST}`
-          ,AuthOptions
+          ,getAuthOptions()
         );
         const data: ExpenditureRequest[] = response.data;
       
@@ -174,13 +174,13 @@ export const useExpenditureBarChart = () => {
         try {
           const responseExp = await axios.get(
             `${Api.BASE_URL}/${Api.EXPENDITURE_SUMMARY}`,
-            AuthOptions
+            getAuthOptions()
           );
           const dataExp: ExpenditureSummary[] = responseExp.data;
 
           const responseReq = await axios.get(
             `${Api.BASE_URL}/${Api.EXPENDITURE_REQUEST_SUMMARY}`
-            ,AuthOptions
+            ,getAuthOptions()
           );
           const dataReq: ExpenditureSummary[] = responseReq.data;
 

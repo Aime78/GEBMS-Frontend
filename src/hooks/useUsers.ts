@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Api, { AuthOptions } from "../routes/AppEndpoints";
+import Api, { getAuthOptions } from "../routes/AppEndpoints";
 import { headerMapUser } from "../constants/headerMap";
 import { HeaderUser, User, UserRow } from "../types/user";
 
@@ -13,7 +13,7 @@ export const useUsers = () => {
       try {
         const response = await axios.get(
           `${Api.BASE_URL}/${Api.USERS}`,
-          AuthOptions
+          getAuthOptions()
         );
         const data: User[] = response.data;
 

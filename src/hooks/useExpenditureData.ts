@@ -1,5 +1,5 @@
 import axios from "axios";
-import Api, { AuthOptions } from "../routes/AppEndpoints";
+import Api, { getAuthOptions } from "../routes/AppEndpoints";
 import {
   Expenditure,
   ExpenditureRow,
@@ -30,8 +30,7 @@ export const useExpenditure = (department: string) => {
       try {
         const response = await axios.get(
           `${Api.BASE_URL}/${Api.EXPENDITURE}?department=${department}`,
-          AuthOptions
-          
+          getAuthOptions()
         );
         const data: Expenditure[] = response.data;
 
@@ -73,7 +72,7 @@ export const useExpenditureRequest = (department: string) => {
       try {
         const response = await axios.get(
           `${Api.BASE_URL}/${Api.EXPENDITURE_REQUEST}?department=${department}`,
-          AuthOptions
+          getAuthOptions()
         );
         const data: ExpenditureRequest[] = response.data;
 
@@ -114,8 +113,8 @@ export const useExpenditureRequestSummary = (department: string) => {
     const fetchExpenditureRequests = async () => {
       try {
         const response = await axios.get(
-          `${Api.BASE_URL}/${Api.EXPENDITURE_REQUEST}?department=${department}`
-          , AuthOptions
+          `${Api.BASE_URL}/${Api.EXPENDITURE_REQUEST}?department=${department}`,
+          getAuthOptions()
         );
         const data: ExpenditureRequest[] = response.data;
 
@@ -178,8 +177,8 @@ export const useExpenditureChart = (department: string) => {
     const fetchExpenditures = async () => {
       try {
         const response = await axios.get(
-          `${Api.BASE_URL}/${Api.EXPENDITURE}?department=${department}`
-          , AuthOptions
+          `${Api.BASE_URL}/${Api.EXPENDITURE}?department=${department}`,
+          getAuthOptions()
         );
         const data: Expenditure[] = response.data;
 
@@ -253,7 +252,7 @@ export const useExpenditureDonutChartDepartment = (department: string) => {
       try {
         const response = await axios.get(
           `${Api.BASE_URL}/${Api.EXPENDITURE}?department=${department}`,
-         AuthOptions
+          getAuthOptions()
         );
         const data: Expenditure[] = response.data;
 

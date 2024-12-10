@@ -1,5 +1,5 @@
 import axios from "axios";
-import Api, { AuthOptions } from "../routes/AppEndpoints";
+import Api, { getAuthOptions } from "../routes/AppEndpoints";
 import { ExpenditureRequest } from "../types/expenditureRequests";
 import { useEffect, useState } from "react";
 import { formatToBillions } from "../lib/formatBillion";
@@ -17,7 +17,7 @@ export const useExpenditureSummary = (
                       ${Api.BASE_URL}/${Api.EXPENDITURE_REQUEST}
                       
                       `,
-            AuthOptions
+            getAuthOptions()
           );
           const data: ExpenditureRequest[] = response.data;
           const sum = data.reduce((acc, curr) => acc + curr.requestedAmount, 0);
@@ -48,7 +48,7 @@ export const useExpenditureSummaryByDepartment = (
                     ${Api.BASE_URL}/${Api.EXPENDITURE_REQUEST}?department=${department}
                     
                     `,
-          AuthOptions
+          getAuthOptions()
         );
         const data: ExpenditureRequest[] = response.data;
         const sum = data.reduce((acc, curr) => acc + curr.requestedAmount, 0);

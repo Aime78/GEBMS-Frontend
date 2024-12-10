@@ -35,7 +35,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../../../components/ui/select";
-import Api, { AuthOptions } from "../../../routes/AppEndpoints";
+import Api, { getAuthOptions } from "../../../routes/AppEndpoints";
 import axios from "axios";
 import { Department } from "../../../types/department";
 import { ScrollArea } from "../../../components/ui/scroll-area";
@@ -68,7 +68,7 @@ const UserMenu = ({ open, setOpen }: UserMenuProps) => {
       try {
         const response = await axios.get(
           `${Api.BASE_URL}/${Api.DEPARTMENTS}`,
-          AuthOptions
+          getAuthOptions()
         );
         const data: Department[] = response.data;
         if (data.length > 0) {
@@ -92,7 +92,7 @@ const UserMenu = ({ open, setOpen }: UserMenuProps) => {
       const response = await axios.post(
         `${Api.BASE_URL}/${Api.USERS}`,
         obj,
-        AuthOptions
+        getAuthOptions()
       );
       console.log(response);
       toast({
