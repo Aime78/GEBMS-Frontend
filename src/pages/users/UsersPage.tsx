@@ -6,10 +6,8 @@ import UserMenu from "./UserMenu/UserMenu";
 import DeleteMenu from "./DeleteMenu/DeleteMenu";
 
 const UsersPage = () => {
-  const [open, setOpen] = useState(false);
-  const [openDeleteMenu, setOpenDeleteMenu] = useState(false);
   const [userId, setUserId] = useState<string>("");
-  const { rows } = useUsers();
+  const { rows, setOpen, open, openDeleteMenu, setOpenDeleteMenu} = useUsers();
 
   const modifiedHeader = [
     {

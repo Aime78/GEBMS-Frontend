@@ -5,6 +5,8 @@ import { headerMapUser } from "../constants/headerMap";
 import { HeaderUser, User, UserRow } from "../types/user";
 
 export const useUsers = () => {
+  const [open, setOpen] = useState(false);
+  const [openDeleteMenu, setOpenDeleteMenu] = useState(false);
   const [headers, setHeaders] = useState<HeaderUser[]>([]);
   const [rows, setRows] = useState<UserRow[]>([]);
 
@@ -28,7 +30,6 @@ export const useUsers = () => {
             }));
           setHeaders(headerData);
 
-        
           setRows(data);
         }
       } catch (error) {
@@ -36,10 +37,13 @@ export const useUsers = () => {
       }
     };
     fetchUsers();
-  }, []);
+  }, [open, openDeleteMenu]);
 
   return {
     headers,
     rows,
+    open,
+    setOpen,
+    openDeleteMenu, setOpenDeleteMenu
   };
 };
