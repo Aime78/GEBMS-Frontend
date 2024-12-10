@@ -99,9 +99,6 @@ const [chartConfig, setChartConfig] = useState({});
               },
             ])
           );
-
-        console.log(chartDataModified);
-        console.log(chartConfigModified);
         setChartConfig(chartConfigModified);
       } catch (error) {
         console.log(error);
