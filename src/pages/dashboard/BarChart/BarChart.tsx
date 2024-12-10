@@ -4,7 +4,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "../../../components/ui/chart";
-import { Bar, CartesianGrid, XAxis } from "recharts";
+import {BarChart as RechartsBarChart, Bar, CartesianGrid, XAxis } from "recharts";
 const chartDataBar = [
   { month: "January", desktop: 186, mobile: 80 },
   { month: "February", desktop: 305, mobile: 200 },
@@ -27,7 +27,7 @@ const BarChart = () => {
   return (
     <div>
         <ChartContainer config={chartConfigBar}>
-              <BarChart accessibilityLayer data={chartDataBar}>
+              <RechartsBarChart accessibilityLayer data={chartDataBar}>
                 <CartesianGrid vertical={false} />
                 <XAxis
                   dataKey="month"
@@ -42,7 +42,7 @@ const BarChart = () => {
                 />
                 <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
                 <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-              </BarChart>
+              </RechartsBarChart>
             </ChartContainer>
     </div>
   );
